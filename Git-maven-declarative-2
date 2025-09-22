@@ -1,0 +1,18 @@
+pipeline{
+    agent any
+    environment{
+        PATH = "$PATH:${tool name: 'maven3.x', type: 'maven'}/bin"
+    }
+    stages{
+        stage('Github'){
+            steps{
+            git credentialsId: 'GIT', url: 'https://github.com/SangramVicky/2025devopswebapp1', branch: 'master'
+        }
+      }
+      stage('Maven bUild'){
+          steps{
+              sh "mvn clean package"
+          }
+        }
+    }
+}
