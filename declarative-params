@@ -1,0 +1,13 @@
+pipeline{
+    agent any
+    parameters {
+  string defaultValue: 'master', description: 'choose your parameter', name: 'BranchName'
+ }
+    stages{
+        stage('Git'){
+            git branch: "${params['BranchName']}" ,
+            credentialsId: 'GIT',
+            url: 'https://github.com/SangramVicky/2025devopswebapp1'
+        }
+    }
+}
